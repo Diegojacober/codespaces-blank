@@ -44,6 +44,14 @@ export default class Main extends Component {
         })
     }
 
+    handleDelete = (e) => {
+
+    }
+
+    handleEdit = (e) => {
+        
+    }
+
     render() {
 
         const { novaTarefa, tarefas } = this.state
@@ -62,8 +70,8 @@ export default class Main extends Component {
                     {tarefas.map((tarefa) => (
                         <li key={tarefa}>{tarefa}
                             <span>
-                                <FaEdit className="edit"/>
-                                <FaWindowClose className="delete"/>
+                                <FaEdit onClick={this.handleEdit} className="edit"/>
+                                <FaWindowClose onClick={this.handleDelete} className="delete"/>
                             </span>
                         </li>
                     ))}
