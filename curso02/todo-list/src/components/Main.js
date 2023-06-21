@@ -7,7 +7,7 @@ import { FaEdit, FaWindowClose } from 'react-icons/fa'
 
 //Components statefull precisam do metodo render
 export default class Main extends Component {
-
+//gerger
     // constructor(props) {
     //     super(props);
 
@@ -49,7 +49,7 @@ export default class Main extends Component {
     }
 
     handleEdit = (e) => {
-        
+
     }
 
     render() {
