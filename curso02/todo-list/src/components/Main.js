@@ -3,6 +3,8 @@ import './Main.css'
 
 import { FaPlus } from 'react-icons/fa'
 
+import { FaEdit, FaWindowClose } from 'react-icons/fa'
+
 //Components statefull precisam do metodo render
 export default class Main extends Component {
 
@@ -19,6 +21,7 @@ export default class Main extends Component {
     //Class fields
     state = {
         novaTarefa: '',
+        tarefas: [],
     }
 
     handleInput = (text) => {
@@ -27,19 +30,45 @@ export default class Main extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+ 
+        const { tarefas } = this.state
+        let { novaTarefa } = this.state
+        novaTarefa = novaTarefa.trim()
+        
+        if(tarefas.indexOf(novaTarefa) !== -1) return;
+        
+        this.setState({
+            tarefas: [...tarefas, novaTarefa]
+        })
+    }
+
     render() {
 
-        const { novaTarefa } = this.state
+        const { novaTarefa, tarefas } = this.state
 
         return (
             <div className="main">
                 <h1>Lista de Tarefas</h1>
 
-                <form action="#" className="form">
+                <form action="#" className="form" onSubmit={this.handleSubmit}>
                     <input type="text" value={novaTarefa} onChange={(e) => this.handleInput(e.target.value)} />
 
                     <button type="submit"><FaPlus size={14}/></button>
                 </form>
+
+                <ul className="tarefas">
+                    {tarefas.map((tarefa) => (
+                        <li key={tarefa}>{tarefa}
+                            <span>
+                                <FaEdit className="edit"/>
+                                <FaWindowClose className="delete"/>
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+
             </div>
         )
     }
