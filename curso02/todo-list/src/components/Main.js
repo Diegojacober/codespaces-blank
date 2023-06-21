@@ -7,7 +7,6 @@ import { FaEdit, FaWindowClose } from 'react-icons/fa'
 
 //Components statefull precisam do metodo render
 export default class Main extends Component {
-//gerger
     // constructor(props) {
     //     super(props);
 
@@ -44,11 +43,17 @@ export default class Main extends Component {
         })
     }
 
-    handleDelete = (e) => {
+    handleDelete = (e, index) => {
+        const { tarefas } = this.state
+        const novasTarefas = [...tarefas]
+        novasTarefas.splice(index, 1)
 
+        this.setState({
+            tarefas: [...novasTarefas]
+        })
     }
 
-    handleEdit = (e) => {
+    handleEdit = (e, index) => {
 
     }
 
@@ -67,11 +72,11 @@ export default class Main extends Component {
                 </form>
 
                 <ul className="tarefas">
-                    {tarefas.map((tarefa) => (
+                    {tarefas.map((tarefa, index) => (
                         <li key={tarefa}>{tarefa}
                             <span>
-                                <FaEdit onClick={this.handleEdit} className="edit"/>
-                                <FaWindowClose onClick={this.handleDelete} className="delete"/>
+                                <FaEdit onClick={e => this.handleEdit(e, index)} className="edit"/>
+                                <FaWindowClose onClick={e => this.handleDelete(e, index)} className="delete"/>
                             </span>
                         </li>
                     ))}
